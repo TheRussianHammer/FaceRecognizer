@@ -32,15 +32,7 @@ class faceComparator():
             faces = faceCascade.detectMultiScale(gray, 1.3, 4, 0,(20,20))
             if len(faces) != 0:
                 faces[:, 2:] += faces[:, :2]
-            
-            #eyes = eyeCascade.detectMultiScale(gray, 1.3, 5, 0)
-#	    faces = faceCascade.detectMultiScale(
- #              gray,
-  #             scaleFactor=1.1,
-   #            minNeighbors=5,
-    #           minSize=(30, 30),
-     #          flags=cv2.CASCADE_SCALE_IMAGE
-    #	    )
+           
 
             # Draw a rectangle around the faces
             for (x, y, w, h) in faces:
@@ -54,7 +46,7 @@ class faceComparator():
                 return True
            
     	
-            cv2.imshow('test', frame)
+          #  cv2.imshow('test', frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
 
