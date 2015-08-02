@@ -10,8 +10,8 @@ class faceComparator():
     def __init__(self):        
         self.X = []
         self.y = []
-        self.path = "C:/Python27/Faces"
-        self.recognizerPath = "C:/Python27/LBPHFaceRecognizers/recognizer.re"
+        self.path = "Faces"
+        self.recognizerPath = "LBPHFaceRecognizers/recognizer.re"
         self.speechEngine = pyttsx.init()
         try:
             self.recognizer = cv2.createLBPHFaceRecognizer()
@@ -21,8 +21,8 @@ class faceComparator():
     def faceDetection(self):
         cap = cv2.VideoCapture(0)
 
-        faceCascade = cv2.CascadeClassifier("c:\Python27\haarcascade_frontalface_alt.xml")
-        eyeCascade = cv2.CascadeClassifier("c:\Python27\haarcascade_eye.xml")
+        faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_alt.xml")
+        
 	Run = True
 
         while(Run):
@@ -32,15 +32,6 @@ class faceComparator():
             faces = faceCascade.detectMultiScale(gray, 1.3, 4, 0,(20,20))
             if len(faces) != 0:
                 faces[:, 2:] += faces[:, :2]
-            
-            #eyes = eyeCascade.detectMultiScale(gray, 1.3, 5, 0)
-#	    faces = faceCascade.detectMultiScale(
- #              gray,
-  #             scaleFactor=1.1,
-   #            minNeighbors=5,
-    #           minSize=(30, 30),
-     #          flags=cv2.CASCADE_SCALE_IMAGE
-    #	    )
 
             # Draw a rectangle around the faces
             for (x, y, w, h) in faces:
@@ -49,7 +40,7 @@ class faceComparator():
                 Run = False
                 cut = frame[y:h, x:w]
                 cut = cv2.resize(cut,(256,256))
-                path = "c:\Python27\Faces\CurrentFace.jpg"
+                path = "Faces\CurrentFace.jpg"
                 cv2.imwrite(path,cut)
                 return True
            
